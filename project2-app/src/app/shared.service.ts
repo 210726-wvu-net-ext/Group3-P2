@@ -5,7 +5,9 @@ import { Category } from './components/interfaces/category';
 import { User } from './components/interfaces/user';
 import { LogInRequest } from './user/user.service';
 import { Product } from './components/interfaces/product';
+import { Order } from './components/interfaces/order';
 import { UserService } from './user/user.service';
+
 
 
 @Injectable({
@@ -54,10 +56,17 @@ export class SharedService {
     return this.https.get<any>(this.APIUrl+'/Product');
   }
 
-  
+  addProduct(product : Product):Observable<Product> {
+    return this.https.post<Product>(this.APIUrl+'/Product',product);
+  }
+
 
   addInventory(val:any){
-    return this.https.post(this.APIUrl+'/inventory',val)
+    return this.https.post(this.APIUrl+'/inventory',val);
+  }
+
+  GetUserOrder(id: number){
+    return this.https.get<Order>(this.APIUrl+id+'/false');
   }
 
 }

@@ -1,6 +1,4 @@
 <section class="py-5">
-
-
     <div class="container px-4 px-lg-5 mt-5">
         <!-- Product reviews-->
         <div class="d-flex justify-content-center small text-warning mb-2">
@@ -17,7 +15,6 @@
                 <form class="signup-form" [formGroup]="form" (ngSubmit)="onSubmit(dataItem)"
                    >
 
-
                     <div class="col mb-5">
 
                         <div class="card h-100">
@@ -30,10 +27,9 @@
                                 <div class="text-center">
                                     <!-- Product name-->
 
-                                    <h5 class="fw-bolder"  >{{dataItem.name}}</h5>
+                                    <h5 class="fw-bolder">{{dataItem.name}}</h5>
                                     <!-- Product price-->
                                     <h5>{{dataItem.price}} </h5>
-
                                     <p>{{dataItem.description}} </p>
                                 </div>
                             </div>
@@ -45,9 +41,7 @@
                         </div>
                     </div>
                 </form>
-
             </a>
         </div>
     </div>
-
 </section>

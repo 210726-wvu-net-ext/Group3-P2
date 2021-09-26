@@ -2,6 +2,9 @@ import { Component, OnInit,Input } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
 import { Product } from '../interfaces/product';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Product } from '../interfaces/product';
+import { UserService } from 'src/app/user/user.service';
+import { User } from '../interfaces/user';
 import { Inventory } from '../interfaces/inventory';
 
 
@@ -13,8 +16,8 @@ import { Inventory } from '../interfaces/inventory';
 })
 export class ProductsComponent implements OnInit {
 
-  form: FormGroup = new FormGroup ( 
-    {   
+  form: FormGroup = new FormGroup(
+    {
       name: new FormControl(''),
       price: new FormControl(''),
       quantity: new FormControl(1),
@@ -22,32 +25,45 @@ export class ProductsComponent implements OnInit {
       inventoryId: new FormControl(15),
     });
 
+  constructor(private service: SharedService, private formBuilder: FormBuilder, private userService: UserService) { }
 
-  constructor(private service :SharedService, private formBuilder: FormBuilder) { }
 
-  InventoryList:any=[];
-
+  InventoryList: any = [];
   ngOnInit(): void {
     this.refreshinvList();
-  }
-
-  refreshinvList()
-  {
-    this.service.ListInventory().subscribe(data=>{
-this.InventoryList = data;
+    this.form = this.formBuilder.group({
+      name: [''],
+      price: [''],
+      quantity: [''],
+      inventoryId: ['']
 
     });
-  }  
-  onSubmit(dataItem: Inventory)
-  {  
-    this.form.value.name = dataItem.name;
-    this.form.value.price = dataItem.price;
-    console.log(this.form);
-    console.log(dataItem);
-    this.service.addProduct(this.form.value).subscribe(
-      res => {
-        alert("Product successfully added!");
-      });
-}
+  }
 
+  refreshinvList() {
+    this.service.ListInventory().subscribe(data => {
+      this.InventoryList = data;
+
+    });
+  }
+
+  onSubmit(dataItem: Inventory) {
+    console.log(this.form.value.inventoryId);
+    this.userService.user$.subscribe(user => {
+      this.service.GetUserOrder(user.id).subscribe(order => {
+        const product: Product = {
+          name: this.form.value.name,
+          price: this.form.value.price,
+          quantity: this.form.value.quantity,
+          inventoryId: dataItem.id,
+          orderId: order.id,
+        
+        };
+        this.service.addProduct(product).subscribe(
+          res => {
+            alert("Category  successfully added!");
+          });
+      })
+    })
+  }
 }
