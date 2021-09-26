@@ -41,6 +41,7 @@ export class SharedService {
     return this.https.post<Category>(this.APIUrl + '/category',category)
   }
   addProduct(product : Product):Observable<Product> {
+    console.log(product);
     return this.https.post<Product>(this.APIUrl+'/product', product)
   }
 
@@ -55,18 +56,14 @@ export class SharedService {
   ListProduct():Observable<any[]>{
     return this.https.get<any>(this.APIUrl+'/Product');
   }
-
-  addProduct(product : Product):Observable<Product> {
-    return this.https.post<Product>(this.APIUrl+'/Product',product);
-  }
-
-
   addInventory(val:any){
     return this.https.post(this.APIUrl+'/inventory',val);
   }
 
   GetUserOrder(id: number){
-    return this.https.get<Order>(this.APIUrl+id+'/false');
+    console.log(id);
+    return this.https.get<Order>(`${this.APIUrl}/order/${id}/false`);
+
   }
 
 }
