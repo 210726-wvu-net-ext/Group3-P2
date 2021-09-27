@@ -12,6 +12,9 @@ describe('GetComponent', () => {
   let fakeSvc = {
     ListInventory(): Observable<any[]> {
       return of([]);
+    },
+    ListCategory(): Observable<any[]> {
+      return of([]);
     }
   }
 
