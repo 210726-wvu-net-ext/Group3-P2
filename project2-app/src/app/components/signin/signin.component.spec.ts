@@ -19,8 +19,8 @@ describe('SigninComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ SigninComponent ],
-      imports: [ CommonModule, ReactiveFormsModule, FormsModule ],
-      providers: [ {provide:HttpClient, useValue: { get: () => null }}, { provide: SharedService, useValue: fakeSvc } ]
+      imports: [ CommonModule ],
+      providers: [ {provide:HttpClient, useValue: { get: () => null }}, { provide: SharedService, useValue: fakeSvc },  ReactiveFormsModule, FormsModule ]
     
     })
     .compileComponents();

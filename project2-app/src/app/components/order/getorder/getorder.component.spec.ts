@@ -17,9 +17,9 @@ describe('GetorderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GetorderComponent, ReactiveFormsModule, FormsModule ],
+      declarations: [ GetorderComponent ],
       imports: [ CommonModule ],
-      providers: [ {provide:HttpClient, useValue: { get: () => null }}, { provide: SharedService, useValue: fakeSvc } ]
+      providers: [ {provide:HttpClient, useValue: { get: () => null }}, { provide: SharedService, useValue: fakeSvc },  ReactiveFormsModule, FormsModule  ]
     })
     .compileComponents();
   });
