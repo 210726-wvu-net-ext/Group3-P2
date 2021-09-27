@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { SharedService } from 'src/app/shared.service';
+import { FormBuilder } from '@angular/forms';
 
 describe('GetComponent', () => {
   let component: GetComponent;
@@ -18,7 +19,7 @@ describe('GetComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ CommonModule ],
       declarations: [ GetComponent ],
-      providers: [ {provide: HttpClient, useValue: { get: () => null }}, { provide: SharedService, useValue: fakeSvc } ]
+      providers: [ {provide: HttpClient, useValue: { get: () => null }}, { provide: SharedService, useValue: fakeSvc }, FormBuilder ]
     })
     .compileComponents();
   });

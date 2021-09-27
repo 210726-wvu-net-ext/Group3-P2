@@ -4,7 +4,8 @@ import { SharedService } from 'src/app/shared.service';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { SignupComponent } from './signup.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 describe('SignupComponent', () => {
   let component: SignupComponent;
@@ -19,7 +20,7 @@ describe('SignupComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ SignupComponent ],
       imports: [ CommonModule, ReactiveFormsModule, FormsModule  ],
-      providers: [ {provide:HttpClient, useValue: { get: () => null }}, { provide: SharedService, useValue: fakeSvc } ]
+      providers: [ {provide:HttpClient, useValue: { get: () => null }}, { provide: SharedService, useValue: fakeSvc }, NgbActiveModal, FormBuilder ]
     })
     .compileComponents();
   });
