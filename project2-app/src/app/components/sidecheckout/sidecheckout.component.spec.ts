@@ -13,6 +13,12 @@ describe('SidecheckoutComponent', () => {
     let fakeSvc = {
       ListInventory(): Observable<any[]> {
         return of([]);
+      },
+      ListOrders(): Observable<any[]> {
+        return of([]);
+      },
+      ListProduct(): Observable<any[]> {
+        return of([]);
       }
     }
     

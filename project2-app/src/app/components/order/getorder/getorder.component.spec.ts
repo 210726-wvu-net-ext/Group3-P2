@@ -12,14 +12,17 @@ describe('GetorderComponent', () => {
   let fakeSvc = {
     ListOrders(): Observable<any[]> {
       return of([]);
+    },
+    ListProduct(): Observable<any[]> {
+      return of([]);
     }
   }
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GetorderComponent, ReactiveFormsModule, FormsModule ],
+      declarations: [ GetorderComponent ],
       imports: [ CommonModule ],
-      providers: [ {provide:HttpClient, useValue: { get: () => null }}, { provide: SharedService, useValue: fakeSvc } ]
+      providers: [ {provide:HttpClient, useValue: { get: () => null }}, { provide: SharedService, useValue: fakeSvc },  ReactiveFormsModule, FormsModule  ]
     })
     .compileComponents();
   });
